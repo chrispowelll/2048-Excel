@@ -21,7 +21,7 @@ def newGame():
 
     # Create random starting block
     randomCell = random.choice(gameCells)
-    wsValues[randomCell] = str(game.getNewValue())
+    wsValues[randomCell] = game.getNewValue()
 
     # Save and update values
     wb.save("values.xlsx")
@@ -86,6 +86,14 @@ def move(direction):
         print("move left")
     elif direction == "right":
         print("move right")
+
+    # Generate new block in an empty cell
+    emptyCells = ['A2', 'A3', 'A4', 'A5', 'B2', 'B3', 'B4', 'B5', 'C2', 'C3', 'C4', 'C5', 'D2', 'D3', 'D4', 'D5']
+    for i in emptyCells:
+        if wsValues[i].value > 0:
+            emptyCells.remove(i)
+    newBlock = random.choice(emptyCells)
+    wsValues[newBlock] = game.getNewValue()
 
     # Save and update values
     wb.save("values.xlsx")
