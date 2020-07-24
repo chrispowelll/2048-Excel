@@ -9,38 +9,54 @@ import openpyxl
 
 
 def main():
-    # Original file input
-    wbFilename = input("Enter Excel file path: ")
-
-    # Create workbook
-    design.createWorkbook(wbFilename)
-    controls.startGame()
-
-    # Open original workbook and 2048 copy
-    os.startfile("2048.xlsx")
-
-    # The Game
     while True:
-        move = input()
-        if move == 'w':
-            controls.moveUp()
-        if move == 's':
-            controls.moveDown()
-        if move == 'a':
-            controls.moveLeft()
-        if move == 'd':
-            controls.moveRight()
-        if move == 'r':
-            controls.startGame()
-        if move == 'q':
-            os.startfile(wbFilename)
+        # Original file input
+        wbFilename = input("Enter Excel file path: ")
+
+        # Check if user wants to quit
+        if wbFilename in ('quit', 'Quit', 'QUIT'):
             sys.exit()
-        if move in ['r', 'd', 'a', 's', 'w']:
-            updateScore()
-            print("update values")
+
+        # Check if file exists
+        elif os.path.exists(wbFilename):
+            # Create workbook
+            design.createValuesWorkbook()
+            design.create2048Workbook(wbFilename)
+            controls.newGame()
+
+            # Open original workbook and 2048 copy
+            os.startfile("2048.xlsx")
+
+            # The Game
+            while True:
+                move = input()
+                if move == 'w':
+                    controls.move("up")
+                if move == 's':
+                    controls.move("down")
+                if move == 'a':
+                    controls.move("left")
+                if move == 'd':
+                    controls.move("right")
+                if move == 'r':
+                    controls.newGame()
+                if move == 'q':
+                    # Open original workbook
+                    os.startfile(wbFilename)
+
+                    # Close program
+                    sys.exit()
+                if move in ['r', 'd', 'a', 's', 'w']:
+                    updateScore()
+                    updateValues()
+
+        # If file doesn't exist
+        else:
+            print('Invalid file location. Please try again. You can also enter QUIT to exit')
 
 
 def getNewValue():
+    # 80% chance 2 is generated, 20% chance 4 is generated
     numberPicker = random.randint(0, 10)
     if numberPicker >= 8:
         return 4
@@ -50,9 +66,14 @@ def getNewValue():
 
 def updateScore():
     score = 0
-    wb = openpyxl.load_workbook("2048.xlsx")
+    wb = openpyxl.load_workbook("values.xlsx", read_only=False)
     ws2048 = wb.active
-    ws2048['D1'] = str(score)
+    ws2048['D1'] = score
+    wb.save("values.xlsx")
+
+
+def updateValues():
+    print("update values")
 
 
 if __name__ == "__main__":

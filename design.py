@@ -4,12 +4,9 @@ import openpyxl
 from openpyxl.styles import Font
 
 
-def createWorkbook(wbFilename):
+def create2048Workbook(wbFilename):
     # Open Excel workbook
     wb = openpyxl.load_workbook(wbFilename)
-
-    # Create 2048 workbook copy
-    wb.save("2048.xlsx")
 
     # Create 2048 worksheet
     ws2048 = wb.copy_worksheet(wb.active)
@@ -22,12 +19,14 @@ def createWorkbook(wbFilename):
         if sheets[i] != "2048":
             wb.remove(wb[sheetName[i]])
 
-    # Set fonts
-    for i in ['A1', 'B1', 'C1', 'D1', 'E1']:  # headings
+    # Headings fonts
+    for i in ['A1', 'B1', 'C1', 'D1', 'E1']:
         ws2048[i].font = Font(name='Verdana', size=10, bold=True)
-    for i in ['A2', 'A3', 'A4', 'A5', 'B2', 'B3', 'B4', 'B5', 'C2', 'C3', 'C4', 'C5', 'D2', 'D3', 'D4', 'D5']:  # game
+    # Games fonts
+    for i in ['A2', 'A3', 'A4', 'A5', 'B2', 'B3', 'B4', 'B5', 'C2', 'C3', 'C4', 'C5', 'D2', 'D3', 'D4', 'D5']:
         ws2048[i].font = Font(name='Verdana', size=10)
-    for i in ['E2', 'E3', 'E4', 'E5']:  # controls
+    # Controls fonts
+    for i in ['E2', 'E3', 'E4', 'E5']:
         ws2048[i].font = Font(name='Verdana', size=8)
 
     # Input headings and controls
@@ -44,3 +43,9 @@ def createWorkbook(wbFilename):
 
     # Save workbook
     wb.save("2048.xlsx")
+
+
+def createValuesWorkbook():
+    # Create workbook for storing values
+    wbValues = openpyxl.Workbook()
+    wbValues.save("values.xlsx")
