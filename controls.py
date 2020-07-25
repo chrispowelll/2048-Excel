@@ -28,6 +28,36 @@ def move(direction):
     wb = openpyxl.load_workbook("values.xlsx", read_only=False)
     wsValues = wb.active
     scoreAdded = 0
+
+    # Game over text
+    if wsValues['A2'].value != wsValues['B2'].value and wsValues['B2'].value != wsValues['C2'].value and \
+            wsValues['C2'].value != wsValues['D2'].value and wsValues['A3'].value != wsValues['B3'].value and \
+            wsValues['B3'].value != wsValues['C3'].value and wsValues['C3'].value != wsValues['D3'].value and \
+            wsValues['A4'].value != wsValues['B4'].value and wsValues['B4'].value != wsValues['C4'].value and \
+            wsValues['C4'].value != wsValues['D4'].value and wsValues['A2'].value != wsValues['A3'].value and \
+            wsValues['A3'].value != wsValues['A4'].value and wsValues['A4'].value != wsValues['A5'].value and \
+            wsValues['B2'].value != wsValues['B3'].value and wsValues['B3'].value != wsValues['B4'].value and \
+            wsValues['B4'].value != wsValues['B5'].value and wsValues['C2'].value != wsValues['C3'].value and \
+            wsValues['C3'].value != wsValues['C4'].value and wsValues['C4'].value != wsValues['C5'].value and \
+            wsValues['D2'].value != wsValues['D3'].value and wsValues['D3'].value != wsValues['D4'].value and \
+            wsValues['D4'].value != wsValues['D5'].value and wsValues['A2'] > 0 and wsValues['A3'] > 0 and \
+            wsValues['A4'].value > 0 and wsValues['A5'].value > 0 and wsValues['B2'].value > 0 and \
+            wsValues['B3'].value > 0 and wsValues['B4'].value > 0 and wsValues['B5'].value > 0 and \
+            wsValues['C2'].value > 0 and wsValues['C3'].value > 0 and wsValues['C4'].value > 0 and \
+            wsValues['C5'].value > 0 and wsValues['D2'].value > 0 and wsValues['D3'].value > 0 and \
+            wsValues['D4'].value > 0 and wsValues['D5'].value > 0:
+        wsValues['A6'] = "GAME OVER!"
+
+    # Game won text
+    if wsValues['A2'].value > 2000 or wsValues['A3'].value > 2000 or wsValues['A4'].value > 2000 or \
+            wsValues['A5'].value > 2000 or wsValues['B2'].value > 2000 or wsValues['B3'].value > 2000 or \
+            wsValues['B4'].value > 2000 or wsValues['B5'].value > 2000 or wsValues['C2'].value > 2000 or \
+            wsValues['C3'].value > 2000 or wsValues['C4'].value > 2000 or wsValues['C5'].value > 2000 or \
+            wsValues['D2'].value > 2000 or wsValues['D3'].value > 2000 or wsValues['D4'].value > 2000 or \
+            wsValues['D5'].value > 2000:
+        wsValues['A6'] = "YOU WON!"
+
+    # Moves
     if direction == "up":
         if wsValues['A2'].value == 0 and wsValues['A3'].value == 0 and wsValues['A4'].value == 0:
             wsValues['A2'] = wsValues['A5'].value
