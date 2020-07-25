@@ -65,6 +65,9 @@ def updateScore(scoreAdded):
     wb = openpyxl.load_workbook("values.xlsx", read_only=False)
     ws2048 = wb.active
     ws2048['D1'].value += scoreAdded
+    highScore = ws2048['D6'].value
+    if ws2048['D1'].value > highScore:
+        ws2048['D6'] = ws2048['D1'].value
     wb.save("values.xlsx")
 
 
