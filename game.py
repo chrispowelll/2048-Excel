@@ -46,9 +46,6 @@ def main():
 
                     # Close program
                     sys.exit()
-                if move in ['r', 'd', 'a', 's', 'w']:
-                    updateScore()
-                    updateValues()
 
         # If file doesn't exist
         else:
@@ -64,11 +61,10 @@ def getNewValue():
         return 2
 
 
-def updateScore():
-    score = 0
+def updateScore(scoreAdded):
     wb = openpyxl.load_workbook("values.xlsx", read_only=False)
     ws2048 = wb.active
-    ws2048['D1'] = score
+    ws2048['D1'].value += scoreAdded
     wb.save("values.xlsx")
 
 
