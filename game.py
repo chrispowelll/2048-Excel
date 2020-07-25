@@ -46,6 +46,10 @@ def main():
                     # Open original workbook
                     os.startfile(wbFilename)
 
+                    # Delete game files
+                    os.remove("2048.xlsx")
+                    os.remove("values.xlsx")
+
                     # Close program
                     sys.exit()
 
@@ -92,6 +96,7 @@ def updateValues():
     ws2048.range('C3').value = wsValues['C3'].value
     ws2048.range('C4').value = wsValues['C4'].value
     ws2048.range('C5').value = wsValues['C5'].value
+    ws2048.range('D1').value = wsValues['D1'].value
     ws2048.range('D2').value = wsValues['D2'].value
     ws2048.range('D3').value = wsValues['D3'].value
     ws2048.range('D4').value = wsValues['D4'].value
