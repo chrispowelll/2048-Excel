@@ -6,6 +6,7 @@ import os
 import sys
 import random
 import openpyxl
+import xlwings as xw
 
 
 def main():
@@ -25,7 +26,7 @@ def main():
             controls.newGame()
 
             # Open original workbook and 2048 copy
-            os.startfile("2048.xlsx")
+            updateValues()
 
             # The Game
             while True:
@@ -40,6 +41,7 @@ def main():
                     controls.move("right")
                 if move == 'r':
                     controls.newGame()
+                    updateValues()
                 if move == 'q':
                     # Open original workbook
                     os.startfile(wbFilename)
@@ -65,14 +67,35 @@ def updateScore(scoreAdded):
     wb = openpyxl.load_workbook("values.xlsx", read_only=False)
     ws2048 = wb.active
     ws2048['D1'].value += scoreAdded
-    highScore = ws2048['D6'].value
-    if ws2048['D1'].value > highScore:
-        ws2048['D6'] = ws2048['D1'].value
     wb.save("values.xlsx")
 
 
 def updateValues():
-    print("update values")
+    # Open 2048 workbook
+    wb2048 = xw.Book("2048.xlsx")
+    ws2048 = wb2048.sheets["2048"]
+
+    # Open values workbook
+    wbValues = openpyxl.load_workbook("values.xlsx", read_only=False)
+    wsValues = wbValues.active
+
+    # Update values
+    ws2048.range('A2').value = wsValues['A2'].value
+    ws2048.range('A3').value = wsValues['A3'].value
+    ws2048.range('A4').value = wsValues['A4'].value
+    ws2048.range('A5').value = wsValues['A5'].value
+    ws2048.range('B2').value = wsValues['B2'].value
+    ws2048.range('B3').value = wsValues['B3'].value
+    ws2048.range('B4').value = wsValues['B4'].value
+    ws2048.range('B5').value = wsValues['B5'].value
+    ws2048.range('C2').value = wsValues['C2'].value
+    ws2048.range('C3').value = wsValues['C3'].value
+    ws2048.range('C4').value = wsValues['C4'].value
+    ws2048.range('C5').value = wsValues['C5'].value
+    ws2048.range('D2').value = wsValues['D2'].value
+    ws2048.range('D3').value = wsValues['D3'].value
+    ws2048.range('D4').value = wsValues['D4'].value
+    ws2048.range('D5').value = wsValues['D5'].value
 
 
 if __name__ == "__main__":

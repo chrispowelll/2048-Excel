@@ -37,8 +37,6 @@ def create2048Workbook(wbFilename):
     ws2048['E3'] = "A = Left, D = Right"
     ws2048['E4'] = "R = Reset"
     ws2048['E5'] = "Q = Quit"
-    ws2048['C6'] = "High score: "
-    ws2048['D6'] = 0
     blankCells = ['B1', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'A6', 'B6', 'C6', 'D6', 'E6', 'G6', 'G5', 'G4', 'G3', 'G2', 'G1']
     for i in range(0, len(blankCells)):
         ws2048[blankCells[i]] = ""

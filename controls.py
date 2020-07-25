@@ -21,7 +21,6 @@ def newGame():
 
     # Save and update values
     wb.save("values.xlsx")
-    game.updateValues()
 
 
 def move(direction):
