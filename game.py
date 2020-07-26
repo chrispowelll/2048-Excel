@@ -75,6 +75,8 @@ def updateScore(scoreAdded):
 
 
 def updateValues():
+    gameCells = ['A2', 'A3', 'A4', 'A5', 'B2', 'B3', 'B4', 'B5', 'C2', 'C3', 'C4', 'C5', 'D2', 'D3', 'D4', 'D5']
+
     # Open 2048 workbook
     wb2048 = xw.Book("2048.xlsx")
     ws2048 = wb2048.sheets["2048"]
@@ -84,23 +86,12 @@ def updateValues():
     wsValues = wbValues.active
 
     # Update values
-    ws2048.range('A2').value = wsValues['A2'].value
-    ws2048.range('A3').value = wsValues['A3'].value
-    ws2048.range('A4').value = wsValues['A4'].value
-    ws2048.range('A5').value = wsValues['A5'].value
-    ws2048.range('B2').value = wsValues['B2'].value
-    ws2048.range('B3').value = wsValues['B3'].value
-    ws2048.range('B4').value = wsValues['B4'].value
-    ws2048.range('B5').value = wsValues['B5'].value
-    ws2048.range('C2').value = wsValues['C2'].value
-    ws2048.range('C3').value = wsValues['C3'].value
-    ws2048.range('C4').value = wsValues['C4'].value
-    ws2048.range('C5').value = wsValues['C5'].value
-    ws2048.range('D1').value = wsValues['D1'].value
-    ws2048.range('D2').value = wsValues['D2'].value
-    ws2048.range('D3').value = wsValues['D3'].value
-    ws2048.range('D4').value = wsValues['D4'].value
-    ws2048.range('D5').value = wsValues['D5'].value
+    for i in gameCells:
+        # Only show values greater than 0
+        if wsValues[i].value > 0:
+            ws2048.range(i).value = wsValues[i].value
+        else:
+            ws2048.range(i).value = ""
 
 
 if __name__ == "__main__":
