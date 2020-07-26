@@ -85,6 +85,9 @@ def updateValues():
     wbValues = openpyxl.load_workbook("values.xlsx", read_only=False)
     wsValues = wbValues.active
 
+    # Update score
+    ws2048.range('D1').value = wsValues['D1'].value
+
     # Update values
     for i in gameCells:
         # Only show values greater than 0
