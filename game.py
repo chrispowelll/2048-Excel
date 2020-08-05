@@ -11,7 +11,7 @@ import xlwings as xw
 # If Windows is used, import WConio2
 if os.name == 'nt':
     import WConio2
-    os = "Windows"
+    userOS = "Windows"
 
 
 def main():
@@ -35,7 +35,7 @@ def main():
 
             # The Game
             while True:
-                if os == "Windows":
+                if userOS == "Windows":
                     move = WConio2.getkey()
                 else:
                     move = input()
