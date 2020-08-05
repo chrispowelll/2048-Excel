@@ -46,10 +46,6 @@ def main():
                     # Open original workbook
                     os.startfile(wbFilename)
 
-                    # Delete game files
-                    os.remove("2048.xlsx")
-                    os.remove("values.xlsx")
-
                     # Close program
                     sys.exit()
 
@@ -59,9 +55,9 @@ def main():
 
 
 def getNewValue():
-    # 80% chance 2 is generated, 20% chance 4 is generated
+    # 90% chance 2 is generated, 10% chance 4 is generated
     numberPicker = random.randint(0, 10)
-    if numberPicker >= 8:
+    if numberPicker >= 9:
         return 4
     else:
         return 2
@@ -87,6 +83,9 @@ def updateValues():
 
     # Update score
     ws2048.range('D1').value = wsValues['D1'].value
+
+    # Update game status
+    ws2048.range('A6').value = wsValues['A6'].value
 
     # Update values
     for i in gameCells:
