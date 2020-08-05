@@ -26,8 +26,8 @@ def create2048Workbook(wbFilename):
     for i in ['A2', 'A3', 'A4', 'A5', 'B2', 'B3', 'B4', 'B5', 'C2', 'C3', 'C4', 'C5', 'D2', 'D3', 'D4', 'D5']:
         ws2048[i].font = Font(name='Verdana', size=10)
         ws2048[i].border = Border(left=Side(style='thin'), right=Side(style='thin'), top=Side(style='thin'), bottom=Side(style='thin'))
-    # Controls fonts
-    for i in ['E2', 'E3', 'E4', 'E5']:
+    # Controls and game status fonts
+    for i in ['E2', 'E3', 'E4', 'E5', 'A6']:
         ws2048[i].font = Font(name='Verdana', size=8)
 
     # Input headings and controls
