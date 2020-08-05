@@ -8,6 +8,11 @@ import random
 import openpyxl
 import xlwings as xw
 
+# If Windows is used, import WConio2
+if os.name == 'nt':
+    import WConio2
+    os = "Windows"
+
 
 def main():
     while True:
@@ -30,7 +35,10 @@ def main():
 
             # The Game
             while True:
-                move = input()
+                if os == "Windows":
+                    move = WConio2.getkey()
+                else:
+                    move = input()
                 if move == 'w':
                     controls.move("up")
                 if move == 's':
