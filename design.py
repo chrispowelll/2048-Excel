@@ -32,7 +32,7 @@ def create2048Workbook(wbFilename):
 
     # Input headings and controls
     ws2048['A1'] = "2048"
-    ws2048['C1'] = "Score:"
+    ws2048['C1'] = "Moves:"
     ws2048['E1'] = "Controls"
     ws2048['E2'] = "W = Up, S = Down"
     ws2048['E3'] = "A = Left, D = Right"
