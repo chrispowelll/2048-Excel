@@ -71,13 +71,6 @@ def getNewValue():
         return 2
 
 
-def updateScore(scoreAdded):
-    wb = openpyxl.load_workbook("values.xlsx", read_only=False)
-    ws2048 = wb.active
-    ws2048['D1'].value += scoreAdded
-    wb.save("values.xlsx")
-
-
 def updateValues():
     gameCells = ['A2', 'A3', 'A4', 'A5', 'B2', 'B3', 'B4', 'B5', 'C2', 'C3', 'C4', 'C5', 'D2', 'D3', 'D4', 'D5']
 
@@ -89,7 +82,7 @@ def updateValues():
     wbValues = openpyxl.load_workbook("values.xlsx", read_only=False)
     wsValues = wbValues.active
 
-    # Update score
+    # Update moves made
     ws2048.range('D1').value = wsValues['D1'].value
 
     # Update game status
