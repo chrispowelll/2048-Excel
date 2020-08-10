@@ -2,11 +2,11 @@
 2048 game playable directly in Excel
 
 ## Requirements
-Python
-Microsoft Excel
-xlwings
-openpyxl
-WConio2 (if using Windows)
+- Python
+- Microsoft Excel
+- xlwings
+- openpyxl
+- WConio2 (if using Windows)
 
 ## Notes
 Not tested on Linux or Mac
